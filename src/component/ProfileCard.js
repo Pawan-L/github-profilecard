@@ -30,7 +30,7 @@ const ProfileCard = () => {
                     <input
                         type="text"
                         id="username"
-                        className="w-full p-2 border rounded-md text-black w-96 ml-12"
+                        className="w-full p-2 border rounded-md text-black w-80 ml-20"
                         placeholder="Enter GitHub Username"
                         value={username}
                         onChange={(e)=>setUsername(e.target.value)}
