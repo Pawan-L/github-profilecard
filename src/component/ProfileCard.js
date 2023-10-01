@@ -33,7 +33,12 @@ const ProfileCard = () => {
                         className=" p-2 border rounded-md text-black ml-20 w-80"
                         placeholder="Enter GitHub Username"
                         value={username}
-                        onChange={(e)=>setUsername(e.target.value)}
+                        onChange={(e)=>{if(e.target.value===""){
+                            setUsername("")
+                        }else{
+                            setUsername(e.target.value)
+                        }
+                    }}
                     />
                 </div>
 
