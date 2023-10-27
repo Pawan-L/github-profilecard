@@ -5,7 +5,7 @@ const ProfileCard = () => {
     const [username, setUsername] = useState("");
     const [userData, setUserData] = useState(null);
 
-    const fetchGitHubData = async () => {
+    const fetchGitHubData = async (username) => {
         try {
             const response = await axios.get(`https://api.github.com/users/${username}`);
             setUserData(response.data);
@@ -16,12 +16,12 @@ const ProfileCard = () => {
     };
 
     useEffect(() => {
-        if (username) {
-            fetchGitHubData();
-        }
     }, [username]);
+    function handleSubmit(){
+        fetchGitHubData(username);
+    }
     return (
-        <div className="container m-auto w-1/3 mt-24 bg-teal-500 text-white text-extrabold rounded-lg shadow-md p-6">
+        <div className="container mt-24 max-w-xs m-auto bg-teal-500 text-white text-extrabold rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-semibold mb-4 text-center">GitHub Profile Card</h2>
                 <div className="mb-4 form">
                     <label htmlFor="username" className="block font-medium text-extrabold text-white text-center">
@@ -30,7 +30,7 @@ const ProfileCard = () => {
                     <input
                         type="text"
                         id="username"
-                        className=" p-2 border rounded-md text-black w-full"
+                        className="p-2 border rounded-md text-black w-full"
                         placeholder="Enter GitHub Username"
                         value={username}
                         onChange={(e)=>{if(e.target.value===""){
@@ -41,6 +41,7 @@ const ProfileCard = () => {
                     }}
                     />
                 </div>
+                <button className="bg-black p-1 px-2 rounded" onClick={handleSubmit}>Submit</button>
 
             {
                 userData && (
